@@ -1,0 +1,536 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"/>
+<title>ilid 的個人頁面</title>
+<style>
+    * { box-sizing: border-box; 
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    body {
+      margin: 0;
+      font-family: "Noto Sans TC", sans-serif;
+      background-color: #fafafa;
+      color: #262626;
+      display: flex;
+      height: 100vh;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .sidebar {
+      width: 240px;
+      background-color: #fff;
+      border-right: 1px solid #dbdbdb;
+      padding: 2rem 1rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .sidebar h1 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-weight: bold;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background-color 0.2s;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .nav-item:hover {
+      background-color: #f0f0f0;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .nav-item span { margin-left: 0.5rem; 
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .main {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+      max-width: 900px;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .post {
+      background-color: #fff;
+      border: 1px solid #dbdbdb;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .post img {
+      width: 100%;
+      border-radius: 12px;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 1rem;
+      border: 2px solid #dbdbdb;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .post-actions {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .post p {
+      margin-top: 1rem;
+      font-size: 1rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .timestamp {
+      font-size: 0.8rem;
+      color: #999;
+      margin-top: 0.5rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .tags {
+      margin-top: 0.5rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .tags span {
+      background-color: #e0ecff;
+      color: #2c6ed5;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      margin-right: 0.4rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .comment-box {
+      margin-top: 1rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .comment-box input {
+      width: 80%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .comment-box button {
+      padding: 0.5rem 1rem;
+      margin-left: 0.5rem;
+      border: none;
+      background-color: #3897f0;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .comments {
+      margin-top: 1rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+    .comment {
+      padding: 0.3rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 0.95rem;
+    
+          document.getElementById("profile-info").style.display = (view === 'profile') ? "block" : "none";
+        }
+  </style>
+</head>
+<body>
+<div class="sidebar"><h1>ilid</h1><div class="nav-item" onclick="toggleView('home')">📰 我的動態</div><div class="nav-item" onclick="toggleView('portfolio')">🖼️ 作品集</div><div class="nav-item" onclick="toggleView('profile')">👤 個人資料</div></div>
+<div style="display:flex; flex:1; overflow:hidden;"><div class="main">
+<div id="post-container">
+<div class="post">
+<h2>📰 我的動態</h2>
+<textarea id="home-post" placeholder="分享近況..." style="width:100%; height:80px; padding:0.5rem; border:1px solid #ccc; border-radius:5px;"></textarea>
+<select id="home-emoji" style="margin-top:0.5rem;">
+<option value="">選擇表情符號</option>
+<option>😀</option>
+<option>😂</option>
+<option>😍</option>
+<option>👍</option>
+<option>🔥</option>
+</select>
+<button onclick="submitHomePost()" style="margin-top:0.5rem;">發佈</button>
+<div id="home-feed" style="margin-top:1rem;"></div>
+</div>
+</div>
+<div id="toggle-portfolio" style="display:none;">
+<div class="post">
+<h2>🎨 作品集</h2>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<img alt="作品圖" src="ChatGPT Image 2025年5月4日 上午10_57_46.png" style="width:100%; border-radius: 8px;"/>
+<p>😊 個人貼圖組合作品</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<img alt="作品圖" src="ChatGPT Image 2025年5月3日 下午02_09_50.png" style="width:100%; border-radius: 8px;"/>
+<p>🏀 籃球水豚的灌籃人生</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<img alt="作品圖" src="ChatGPT Image 2025年5月3日 下午03_07_49.png" style="width:100%; border-radius: 8px;"/>
+<p>🔥 燃燒球場的靈魂少年</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<video controls="" width="100%">
+<source src="374958785574334464.mp4" type="video/mp4"/>
+</video>
+<p>📽️ 創作短片：閃耀登場</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<video controls="" width="100%">
+<source src="Untitled Video.mp4" type="video/mp4"/>
+</video>
+<p>📹 動態剪輯：比賽集錦</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<video controls="" width="100%">
+<source src="籃球火.mp4" type="video/mp4"/>
+</video>
+<p>🔥 作品：籃球火（影片）</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+<div class="post-card" style="border:1px solid #ccc; padding:1rem; margin-bottom:1rem; border-radius:10px;">
+<audio controls="" style="width:100%">
+<source src="【參冰】 (1).mp3" type="audio/mpeg"/>
+</audio>
+<p>🎶 原創音樂作品《參冰》</p>
+<button onclick="likePost(this)">❤️ 讚</button><span class="like-count"> 0</span>
+<div class="comments">
+<input onkeydown="addComment(event, this)" placeholder="留言..." type="text"/>
+<ul class="comment-list"></ul>
+</div>
+</div>
+
+<div class="emoji-react" style="margin-top:0.5rem;">
+<button onclick="reactEmoji(this, '😂')">😂</button> <span>0</span>
+<button onclick="reactEmoji(this, '😍')">😍</button> <span>0</span>
+<button onclick="reactEmoji(this, '👍')">👍</button> <span>0</span>
+</div>
+</div>
+</div>
+<div id="profile-info" style="display:none;">
+<div class="post">
+<h2>👤 個人資料</h2>
+<div style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 10px; padding: 1rem; background-color: #fff;">
+<div style="flex: 1;">
+<p><strong>姓名：</strong>ilid</p>
+<p><strong>年次：</strong>1998</p>
+<p><strong>居住地：</strong>臺中</p>
+<p><strong>星座：</strong>金牛座</p>
+<p><strong>興趣：</strong>彈吉他、唱歌</p>
+</div>
+<img alt="個人頭像" src="ChatGPT Image 2025年5月4日 上午10_54_16.png" style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover; margin-left: 2rem;"/>
+</div>
+</div>
+</div><div id="toggle-post" style="display:none;">
+<div class="post">
+<h2>📝 建立貼文</h2>
+<textarea id="new-post" placeholder="寫下你的想法..." style="width:100%; height:80px; padding:0.5rem; border:1px solid #ccc; border-radius:5px;"></textarea>
+<button onclick="submitPost()" style="margin-top:0.5rem;">發佈</button>
+<div id="post-feed" style="margin-top:1rem;"></div>
+</div>
+</div></div><div id="right-panel" style="width:250px; padding:1rem; background:#fff; border-left:1px solid #dbdbdb;">
+<div style="background:#fff; border:1px solid #ccc; padding:1rem; border-radius:10px; margin-bottom:1rem;">
+<h3>📈 作品集排行榜</h3>
+<ul style="list-style:none; padding-left:0;">
+<li>😂 12 次</li>
+<li>😍 9 次</li>
+<li>👍 6 次</li>
+</ul>
+<img alt="可愛Q版頭像" src="ChatGPT Image 2025年5月4日 上午10_54_16.png" style="width:100px; margin-top:10px; border-radius:50%;"/>
+</div>
+<div style="background:#fff; border:1px solid #ccc; padding:1rem; border-radius:10px;">
+<h3>💬 每日金句</h3>
+<p id="daily-quote">✨ 每天進步一點點 💪</p>
+</div>
+<script>
+  const quotes = [
+    "✨ 每天進步一點點 💪",
+    "🌈 保持微笑，每一天都很重要 😄",
+    "🔥 別放棄，再努力一下就成功了 💥",
+    "📚 學習永不停止 📈",
+    "🎯 相信自己，無所不能 🚀"
+  ];
+  function updateQuote() {
+    const quote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("daily-quote").textContent = quote;
+  }
+  document.addEventListener("DOMContentLoaded", () => {
+    updateQuote();
+    setInterval(updateQuote, 10000);
+  });
+</script>
+</div></div>
+<script>
+function toggleView(view) {
+  const home = document.getElementById("post-container");
+  const portfolio = document.getElementById("toggle-portfolio");
+  const profile = document.getElementById("profile-info");
+
+  if (home) home.style.display = (view === 'home') ? "block" : "none";
+  if (portfolio) portfolio.style.display = (view === 'portfolio') ? "block" : "none";
+  if (profile) profile.style.display = (view === 'profile') ? "block" : "none";
+}
+</script><script>
+function toggleView(view) {
+  const home = document.getElementById("post-container");
+  const portfolio = document.getElementById("toggle-portfolio");
+  const profile = document.getElementById("profile-info");
+  const post = document.getElementById("toggle-post");
+  if (home) home.style.display = (view === 'home') ? "block" : "none";
+  if (portfolio) portfolio.style.display = (view === 'portfolio') ? "block" : "none";
+  if (profile) profile.style.display = (view === 'profile') ? "block" : "none";
+  if (post) post.style.display = (view === 'post') ? "block" : "none";
+}
+
+function likePost(button) {
+  const countSpan = button.nextElementSibling;
+  let count = parseInt(countSpan.textContent.trim());
+  if (button.innerText.includes("已讚")) {
+    button.innerText = "❤️ 讚";
+    countSpan.textContent = " " + (count - 1);
+  } else {
+    button.innerText = "💖 已讚";
+    countSpan.textContent = " " + (count + 1);
+  }
+}
+
+function addComment(event, input) {
+  if (event.key === "Enter" && input.value.trim() !== "") {
+    const commentList = input.parentElement.querySelector(".comment-list");
+    const li = document.createElement("li");
+    const now = new Date();
+    const timestamp = now.getFullYear() + "/" + 
+                      String(now.getMonth() + 1).padStart(2, '0') + "/" +
+                      String(now.getDate()).padStart(2, '0') + " " +
+                      String(now.getHours()).padStart(2, '0') + ":" +
+                      String(now.getMinutes()).padStart(2, '0');
+
+    const spanText = document.createElement("span");
+    spanText.textContent = input.value + " ";
+    li.appendChild(spanText);
+
+    const timeTag = document.createElement("span");
+    timeTag.textContent = "(" + timestamp + ")";
+    timeTag.style.backgroundColor = "#eee";
+    timeTag.style.fontSize = "10pt";
+    timeTag.style.padding = "2px 6px";
+    timeTag.style.marginLeft = "4px";
+    timeTag.style.borderRadius = "4px";
+    li.appendChild(timeTag);
+
+    ["👍","😂","😍"].forEach(emoji => {
+      const eBtn = document.createElement("button");
+      eBtn.textContent = emoji;
+      eBtn.style.marginLeft = "5px";
+      eBtn.onclick = () => {
+        eBtn.textContent += "💥";
+        eBtn.disabled = true;
+      };
+      li.appendChild(eBtn);
+    });
+
+    const delBtn = document.createElement("button");
+    delBtn.textContent = "❌";
+    delBtn.style.marginLeft = "10px";
+    delBtn.onclick = () => li.remove();
+    li.appendChild(delBtn);
+
+    commentList.appendChild(li);
+    input.value = "";
+  }
+}
+</script><script>
+function submitPost() {
+  const content = document.getElementById("new-post").value.trim();
+  if (!content) return;
+  const postFeed = document.getElementById("post-feed");
+  const post = document.createElement("div");
+  post.textContent = content;
+  post.style.padding = "0.5rem";
+  post.style.border = "1px solid #ddd";
+  post.style.borderRadius = "5px";
+  post.style.marginBottom = "0.5rem";
+  postFeed.prepend(post);
+  document.getElementById("new-post").value = "";
+}
+
+function submitHomePost() {
+  const content = document.getElementById("home-post").value.trim();
+  const emoji = document.getElementById("home-emoji").value;
+  if (!content && !emoji) return;
+  const postFeed = document.getElementById("home-feed");
+  const postWrapper = document.createElement("div");
+  postWrapper.style.padding = "0.5rem";
+  postWrapper.style.border = "1px solid #ddd";
+  postWrapper.style.borderRadius = "5px";
+  postWrapper.style.marginBottom = "0.5rem";
+
+  const now = new Date();
+  const timestamp = now.getFullYear() + "/" +
+                    String(now.getMonth() + 1).padStart(2, '0') + "/" +
+                    String(now.getDate()).padStart(2, '0') + " " +
+                    String(now.getHours()).padStart(2, '0') + ":" +
+                    String(now.getMinutes()).padStart(2, '0');
+
+  const contentDiv = document.createElement("div");
+  contentDiv.textContent = content + (emoji ? " " + emoji : "");
+  postWrapper.appendChild(contentDiv);
+
+  const timeTag = document.createElement("span");
+  timeTag.textContent = "(" + timestamp + ")";
+  timeTag.style.backgroundColor = "#eee";
+  timeTag.style.fontSize = "10pt";
+  timeTag.style.padding = "2px 6px";
+  timeTag.style.marginLeft = "4px";
+  timeTag.style.borderRadius = "4px";
+  postWrapper.appendChild(timeTag);
+
+  const likeBtn = document.createElement("button");
+  likeBtn.textContent = "❤️ 讚";
+  likeBtn.style.marginLeft = "10px";
+  const likeCount = document.createElement("span");
+  likeCount.textContent = " 0";
+  likeBtn.onclick = () => {
+    let count = parseInt(likeCount.textContent.trim());
+    if (likeBtn.textContent.includes("已讚")) {
+      likeBtn.textContent = "❤️ 讚";
+      likeCount.textContent = " " + (count - 1);
+    } else {
+      likeBtn.textContent = "💖 已讚";
+      likeCount.textContent = " " + (count + 1);
+    }
+  };
+  postWrapper.appendChild(likeBtn);
+  postWrapper.appendChild(likeCount);
+
+  const commentBox = document.createElement("div");
+  commentBox.innerHTML = `
+    <input type="text" placeholder="留言..." onkeydown="if(event.key==='Enter') addComment(this)" style="margin-top:0.5rem; width:90%; padding:0.3rem;" />
+    <ul class="comment-list" style="list-style:none; padding-left:0;"></ul>
+  `;
+  postWrapper.appendChild(commentBox);
+
+  
+  const delPostBtn = document.createElement("button");
+  delPostBtn.textContent = "❌ 刪除貼文";
+  delPostBtn.style.marginLeft = "1rem";
+  delPostBtn.onclick = () => deletePost(delPostBtn);
+  postWrapper.appendChild(delPostBtn);
+  postFeed.prepend(postWrapper);
+
+  document.getElementById("home-post").value = "";
+  document.getElementById("home-emoji").value = "";
+}
+
+function addComment(input) {
+  const list = input.parentElement.querySelector(".comment-list");
+  if (!input.value.trim()) return;
+  const li = document.createElement("li");
+  li.textContent = input.value.trim();
+
+  const now = new Date();
+  const timestamp = now.getFullYear() + "/" +
+                    String(now.getMonth() + 1).padStart(2, '0') + "/" +
+                    String(now.getDate()).padStart(2, '0') + " " +
+                    String(now.getHours()).padStart(2, '0') + ":" +
+                    String(now.getMinutes()).padStart(2, '0');
+
+  const ts = document.createElement("span");
+  ts.textContent = " (" + timestamp + ")";
+  ts.style.backgroundColor = "#eee";
+  ts.style.fontSize = "10pt";
+  ts.style.marginLeft = "6px";
+  ts.style.padding = "2px 6px";
+  ts.style.borderRadius = "4px";
+  li.appendChild(ts);
+
+  const del = document.createElement("button");
+  del.textContent = "❌";
+  del.style.marginLeft = "10px";
+  del.onclick = () => li.remove();
+  li.appendChild(del);
+
+  list.appendChild(li);
+  input.value = "";
+}
+
+// 刪除貼文按鈕功能
+function deletePost(button) {
+  const post = button.closest("div");
+  if (post) post.remove();
+}
+
+function insertEmojiToComment(select) {
+  const emoji = select.value;
+  if (!emoji) return;
+  const input = select.parentElement.querySelector("input[type='text']");
+  input.value += emoji;
+  select.selectedIndex = 0;
+}
+
+function reactEmoji(btn, type) {
+  const countSpan = btn.nextElementSibling;
+  let count = parseInt(countSpan.textContent.trim());
+  countSpan.textContent = count + 1;
+}
+</script></body>
+</html>
